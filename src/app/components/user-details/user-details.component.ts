@@ -57,6 +57,8 @@ export class UserDetailsComponent implements OnInit,OnDestroy{
           this._ToastrService.success('Photo Changed Successed','Linkedin');
         }
       })
+    }else{
+      this._ToastrService.error('Must Enter Photo','Linkedin')
     }
   }
 
