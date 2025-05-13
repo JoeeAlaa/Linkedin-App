@@ -1,0 +1,102 @@
+<section class="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4 dark:bg-darkBg dark:animate-dark-pulse transition-all duration-500">
+    <h1 class="text-3xl md:text-4xl font-bold text-blue-600 mb-6 animate-fade-down mt-24">
+      Linked Posts
+    </h1>
+  
+    <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg w-full md:w-7/12 animate-fade-up dark:bg-gray-900 dark:text-white dark:border">
+      <h2 class="text-2xl font-bold mb-6 text-blue-600 ">Register now</h2>
+  
+        <form [formGroup]="registerForm" class="space-y-4" (ngSubmit)="registerSubmit()">
+    
+            <div class="p-1">
+                <input formControlName="name" type="text" placeholder="Type your name.." class="w-full bg-gray-50 border border-gray-300 rounded outline-none focus:ring-2 focus:ring-blue-400 dark:text-black" />
+
+                @if (registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)) {
+                    <div class="bg-red-300 text-red-500 text-sm mt-1 p-1 rounded shadow w-3/5">
+                        @if (registerForm.get('name')?.getError('required')) {
+                            <p class="m-0">Name is Required</p>
+                        }
+                        @else if (registerForm.get('name')?.getError('minlength')) {
+                            <p class="m-0">Name Should be more than or equal  3 chars</p>
+                        }
+                        @else if (registerForm.get('name')?.getError('maxlength')) {
+                            <p class="m-0">Name Should be less than or equal  20 chars</p>
+                        }
+                    </div>
+                }
+            </div>
+    
+            <div class="p-1">
+                <input formControlName="email" type="email" placeholder="Type your email..." class="w-full bg-gray-50 border border-gray-300 rounded outline-none focus:ring-2 focus:ring-blue-400 dark:text-black" />
+
+                @if (registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)) {
+                    <div class="bg-red-300 text-red-500 text-sm mt-1 p-1 rounded shadow w-3/5">
+                        @if (registerForm.get('email')?.getError('required')) {
+                            <p class="m-0">Email is Required</p>
+                        }
+                        @else if (registerForm.get('email')?.getError('email')) {
+                            <p class="m-0">Enter Valid Email</p>
+                        }
+                    </div>
+                }
+            </div>
+    
+            <div class="p-1">
+                <input formControlName="password" type="password" placeholder="Type your password" class="w-full bg-gray-50 border border-gray-300 rounded outline-none focus:ring-2 focus:ring-blue-400 dark:text-black" />
+
+                @if (registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)) {
+                    <div class="bg-red-300 text-red-500 text-sm mt-1 p-1 rounded shadow w-3/5">
+                        @if (registerForm.get('password')?.getError('required')) {
+                            <p class="m-0">password is Required</p>
+                        }
+                        @else if (registerForm.get('password')?.getError('pattern')) {
+                            <p class="m-0">Enter Valid Passsword</p>                        
+                        }
+                    </div>
+                }                
+            </div>
+    
+            <div class="p-1">
+                <input formControlName="rePassword" type="password" placeholder="Confirm password" class="w-full bg-gray-50 border border-gray-300 rounded outline-none focus:ring-2 focus:ring-blue-400 dark:text-black" />
+
+                @if (registerForm.getError('mismatch') && (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty)) {
+                    <div class="bg-red-300 text-red-500 text-sm mt-1 p-1 rounded shadow w-3/5">
+                       <p class="m-0">Password confirmation is incorrect</p>
+                    </div>
+                }
+            </div>
+    
+            <div class="p-1">
+                <input formControlName="dateOfBirth" type="date" class="w-full bg-gray-50 border border-gray-300 rounded outline-none focus:ring-2 focus:ring-blue-400 dark:text-black" />
+
+                @if (registerForm.get('dateOfBirth')?.errors && (registerForm.get('dateOfBirth')?.touched || registerForm.get('dateOfBirth')?.dirty)) {
+                    <div class="bg-red-300 text-red-500 text-sm mt-1 p-1 rounded shadow w-3/5">
+                       <p class="m-0">Date is Required</p>
+                    </div>
+                }                
+            </div>
+    
+            <div class="flex items-center space-x-6 p-1">
+                <label class="flex items-center space-x-2">
+                    <input formControlName="gender" value="male" type="radio" class="form-radio text-blue-600" />
+                    <span>Male</span>
+                </label>
+    
+                <label class="flex items-center space-x-2">
+                    <input formControlName="gender" value="female" type="radio" class="form-radio text-blue-600"/>
+                    <span>Female</span>
+                </label>
+            </div>
+    
+            <button [disabled]="isLoading" type="submit" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                Signup
+                @if (isLoading) {
+                    <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+            </button>
+    
+        </form>
+    </div>
+</section>
+  
+  

@@ -1,0 +1,51 @@
+<section class="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4 dark:bg-darkBg dark:animate-dark-pulse transition-all duration-500">
+    <h1 class="text-3xl md:text-4xl font-bold text-blue-600 mb-6 animate-fade-down">
+      Linked Posts
+    </h1>
+  
+    <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg w-full md:w-5/12 animate-fade-up dark:bg-gray-900 dark:text-white dark:border">
+      <h2 class="text-2xl font-bold mb-6 text-blue-600 ">Login now</h2>
+  
+        <form [formGroup]="LoginForm" class="space-y-4" (ngSubmit)="loginSubmit()">
+    
+            <div class="p-1">
+                <input formControlName="email" type="email" placeholder="Type your email..." class="w-full bg-gray-50 border border-gray-300 rounded outline-none focus:ring-2 focus:ring-blue-400 dark:text-black" />
+
+                @if (LoginForm.get('email')?.errors && (LoginForm.get('email')?.touched || LoginForm.get('email')?.dirty)) {
+                    <div class="bg-red-300 text-red-500 text-sm mt-1 p-1 rounded shadow w-3/5">
+                        @if (LoginForm.get('email')?.getError('required')) {
+                            <p class="m-0">Email is Required</p>
+                        }
+                        @else if (LoginForm.get('email')?.getError('email')) {
+                            <p class="m-0">Enter Valid Email</p>
+                        }
+                    </div>
+                }
+            </div>
+    
+            <div class="p-1">
+                <input formControlName="password" type="password" placeholder="Type your password" class="w-full bg-gray-50 border border-gray-300 rounded outline-none focus:ring-2 focus:ring-blue-400 dark:text-black" />
+
+                @if (LoginForm.get('password')?.errors && (LoginForm.get('password')?.touched || LoginForm.get('password')?.dirty)) {
+                    <div class="bg-red-300 text-red-500 text-sm mt-1 p-1 rounded shadow w-3/5">
+                        @if (LoginForm.get('password')?.getError('required')) {
+                            <p class="m-0">password is Required</p>
+                        }
+                        @else if (LoginForm.get('password')?.getError('pattern')) {
+                            <p class="m-0">Enter Valid Passsword</p>                        
+                        }
+                    </div>
+                }                
+            </div>
+    
+            <button [disabled]="isLoading" type="submit" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                Signin
+                @if (isLoading) {
+                    <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+            </button>
+    
+            <p class="text-slate-500">Not registered? <span class="text-blue-600 font-bold cursor-pointer" routerLink="/register">Create account</span></p>
+        </form>
+    </div>
+</section>

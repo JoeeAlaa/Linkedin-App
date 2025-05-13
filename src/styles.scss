@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'ngx-toastr/toastr';
+
+:root {
+    --main-color: #2563eb;
+    --light-color: #fffdfe;
+    --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+        rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+        rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+    --font-family: "Encode Sans Expanded", sans-serif;
+    --rating-color: #ffc908;
+}
+.active-link {
+    background-color: #3b82f6 !important;
+    color: white !important;
+    border-radius: 0.375rem !important;
+    padding: 0.1rem 0.2rem !important;
+    -webkit-border-radius: 0.375rem !important;
+    -moz-border-radius: 0.375rem !important;
+    -ms-border-radius: 0.375rem !important;
+    -o-border-radius: 0.375rem !important;
+}

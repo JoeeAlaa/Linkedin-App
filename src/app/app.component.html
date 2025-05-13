@@ -1,0 +1,29 @@
+@if (online()) {
+  
+    <router-outlet></router-outlet>
+    <button
+      class="fixed bottom-4 right-4 z-50 w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg hover:bg-blue-600 transition"
+      (click)="toggleTheme()"
+      >
+      <i class="fa-regular fa-sun"></i>
+    </button>
+  
+    <ngx-spinner
+      color="#fff"
+        bdColor="rgba(100, 100, 100, 0.8)"
+        template="<img width='200px' src='./assets/images/images.png'/>"
+      >
+      <p class="text-white">Loading...</p>
+    </ngx-spinner>
+  }
+  @else {
+    <div class="flex flex-col justify-center items-center min-h-screen dark:bg-darkBg dark:animate-dark-pulse transition-all duration-500">
+      <div class="w-1/2 text-center">
+        <img src="./assets/images/offline.jpg" class="w-full" alt="Offline">
+        <h1 class="text-2xl font-bold mt-4 dark:text-white">You are offline!</h1>
+        <p class="text-gray-600 dark:text-white">Please check your internet connection</p>
+      </div>
+    </div>
+        
+}
+  
