@@ -44,18 +44,20 @@ export class UserDetailsComponent implements OnInit,OnDestroy{
 
   uploadImage():void{
     const formData = new FormData();
-    formData.append('photo',this.savedFile);
-    this.uploadProfilePhotoSub = this._UsersService.uploadProfilePhoto(formData).subscribe({
-      next:(res)=>{
-        this.isModalOpen = false;
-        this.getUserDataSub = this._UsersService.getUserData().subscribe({
-          next:(res)=>{
-            this.userDetails.set(res.user)
-          }
-        });
-        this._ToastrService.success('Photo Changed Successed','Linkedin');
-      }
-    })
+    if (this.savedFile) {      
+      formData.append('photo',this.savedFile);
+      this.uploadProfilePhotoSub = this._UsersService.uploadProfilePhoto(formData).subscribe({
+        next:(res)=>{
+          this.isModalOpen = false;
+          this.getUserDataSub = this._UsersService.getUserData().subscribe({
+            next:(res)=>{
+              this.userDetails.set(res.user)
+            }
+          });
+          this._ToastrService.success('Photo Changed Successed','Linkedin');
+        }
+      })
+    }
   }
 
   ngOnInit(): void {
